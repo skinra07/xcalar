@@ -1,0 +1,54 @@
+keyboard-transform
+
+Write a program that maintains the state of a 10x4 subset of the keyboard. From left to right:
+
+1 -> 0 (10 keys)
+q -> p (10 keys)
+a -> ; (10 keys)
+z -> / (10 keys)
+
+Given these keys, you could apply various transforms:
+
+H - horizontal mirror (about Y-axis)
+V - vertical mirror (about X-axis)
+N - Keys shifted by right (+N) or left (-N)
+
+Given an input string and a string representing a transform, what would the output look like on this transformed keyboard?
+
+For a horizontal (H) flip: 1 becomes 0, 2 becomes 9, ... , q becomes p, w becomes o
+For a vertical (V) flip: 1 becomes z, q becomes a, ..., 0 becomes /, p becomes ; and Q remains Q (not in transform list)
+A +-ive shift: 1 becomes 2, 2 becomes 3, ... / becomes 1 (wrap around)
+A -ive shift: 1 becomes /, 2 becomes 1, ...
+
+Example transforms:
+
+Transform "Hello" by H V -1  and you get "Hjqqa".
+Transform "Hello" by H V V H and you get "Hello" (identity transform)
+
+
+ssh-hosts
+
+Given a list of hosts (a mix of RHEL6, RHEL7 and Ubuntu 14.04) in a simple hosts.txt
+
+server1
+server2
+server3
+server4
+
+You are an operator, and can access the cluster specified in this list as developer. You have password-less ssh and sudo access to the hosts specified. Using a provided private key in ~/.ssh/developer_key. You've never logged into these hosts before.
+
+You're given these tasks:
+
+    Ensure these hosts are running the latest version of the ssh daemon.
+
+    Ensure that only ssh key authentication is possible.
+
+    Anyone should be able to run your script given the same inputs/files (hosts.txt, developer ssh key, etc). Make no assumptions about the execution environment, except that it is Unix based (you have ssh and common interpreters/compilers/tools installed). You can install anything you like, but need to list out what you installed.
+
+    Your solution should be idempotent. One should be able to execute your solution without causing additional changes to the servers.
+
+    It should run as fast as possible across the list of hosts.
+
+    It should be able to handle 250 hosts.
+
+Provide a solution using any language or framework you're comfortable with. Make it as robust as possible to runtime errors (host doesn't exist, ssh key doesn't work, anything else that can go wrong). If one of the hosts experiences an error, report it, but the script should continue on to other hosts.
